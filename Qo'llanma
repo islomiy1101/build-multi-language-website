@@ -19,3 +19,5 @@ Django frameworkida Saytni ko’p tilli qilish bo’yicha qo’llanma
         'django.contrib.staticfiles',
         'news'
     ]
+	
+4.Loyihani ishga tushiramiz – py manage.py runserver
