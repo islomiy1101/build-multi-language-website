@@ -1,6 +1,6 @@
 Django frameworkida Saytni ko’p tilli qilish bo’yicha qo’llanma
 
-1.Yangi Loyiha yaratamiz  
+<h1>1.Yangi Loyiha yaratamiz  </h1>
 
 - django-admin startproject blog          
 
