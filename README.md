@@ -1,6 +1,6 @@
 ### Django frameworkida web-saytni ko’p tilli qilish bo’yicha qo’llanma
 ___
-#### 1.Yangi loyiha yaratamiz  
+### 1.Yangi loyiha yaratamiz  
     django-admin startproject blog
 #### 2. Loyihani ichida yangi app yaratamiz 
     python manage.py startapp news
