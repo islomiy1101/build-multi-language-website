@@ -242,7 +242,7 @@ buning uchun admin.py fayliga quyidagicha o'zgartirish kiritamiz:
         prepopulated_fields = {'slug':('title',)}
 
 ### 24. Rasmdan ko'rishiz mumkin endi saytimiz 3 xil tilda ishlamoqda
-![This is an image](https://github.com/islomiy1101/build-multi-language-website/blob/master/static/11.jpg?raw=true)
+![This is an image](https://github.com/islomiy1101/build-multi-language-website/blob/master/static/rusdron.jpg?raw=true)
 
 
 ### 25.Bizda mana bazadan kelayotgan ma’lumotlar o’zgarmoqda endi saytdagi menyular yoki footer qismidagi textlarni o’zgartirish ni ko'rib chiqamiz.
