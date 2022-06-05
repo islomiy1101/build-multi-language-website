@@ -25,6 +25,8 @@ INSTALLED_APPS = [
     
     from django.db import models
     from django.urls import reverse
+
+
     class Article(models.Model):
         title=models.CharField(max_length=255)
         slug=models.SlugField(unique=True)
@@ -36,10 +38,11 @@ INSTALLED_APPS = [
         def get_absolute_url(self):
             return reverse('')
 ### 6. Article modelimizdagi maydonlarni bazada yaratish uchun
-   quyidagi kommandalarni terminalga kiritib run qilamiz:
+   quyidagi buyruqlarni terminalga kiritib run qilamiz:
 
     python manage.py makemigrations
     python manage.py migrate
+
    admin panelga kirish uchun superuser yaratishimiz kerak uni quyidagicha yaratamiz:
 
     python manage.py createsuperuser
@@ -58,6 +61,8 @@ INSTALLED_APPS = [
 
     from django.contrib import admin
     from .models import Article
+
+
     @admin.register(Article)
     class ArticleAdmin(admin.ModelAdmin):
         prepopulated_fields = {'slug':('title',)}
@@ -66,6 +71,8 @@ INSTALLED_APPS = [
    
     from django.urls import path
     from .views import article_detail
+
+
     app_name='news'
     urlpatterns=[
         path('<slug:slug>/',article_detail,name='article_detail')
@@ -73,6 +80,8 @@ INSTALLED_APPS = [
 
 ### 9. _views.py_ faylida _article_detail_ nomli funksiya hosil qilamiz
     from django.shortcuts import render
+
+
     def article_detail(request,slug):
         context={
             'msg':'Hello World'
@@ -85,6 +94,7 @@ INSTALLED_APPS = [
 ### 11.Loyihaning urls.py faylini quyidagicha o’zgartiramiz
     from django.contrib import admin
     from django.urls import path,include
+
 
     urlpatterns = [
         path('admin/', admin.site.urls),
@@ -106,6 +116,8 @@ INSTALLED_APPS = [
 ### 14. Ma'lumotlarni templatega chiqarish uchun views.py fayliga qo'shimchalar kiritamiz
     from django.shortcuts import render,get_object_or_404
     from .models import Article
+
+
     def article_detail(request,slug):
         data=get_object_or_404(Article,slug=slug)
         context={
@@ -125,6 +137,7 @@ INSTALLED_APPS = [
     from django.conf.urls.i18n import i18n_patterns
     from django.contrib import admin
     from django.urls import path,include
+
 
     urlpatterns = [
         path('admin/', admin.site.urls),
@@ -166,6 +179,7 @@ INSTALLED_APPS = [
     from django.contrib import admin
     from django.urls import path,include
 
+
     urlpatterns = [
         path('admin/', admin.site.urls),
     ]+i18n_patterns(
@@ -176,7 +190,7 @@ INSTALLED_APPS = [
 ![This is an image](https://github.com/islomiy1101/build-multi-language-website/blob/master/static/pro.jpg?raw=true)
 
 ### 20. Loyihamizda foydalanish uchun django modeltranslation packagini o'rnatib olamiz
-buning uchun terminalda quyidagi kommandani beramiz:
+buning uchun terminalda quyidagi buyruqni beramiz:
 
     pip install django-modeltranslation
 
@@ -201,6 +215,7 @@ buning uchun terminalda quyidagi kommandani beramiz:
     from modeltranslation.translator import register, TranslationOptions
     from news.models import Article
 
+
     @register(Article)
     class ArticleTranslationOptions(TranslationOptions):
         fields = ('title', 'text',)
@@ -220,6 +235,7 @@ buning uchun admin.py fayliga quyidagicha o'zgartirish kiritamiz:
     from modeltranslation.admin import TranslationAdmin
     from django.contrib import admin
     from .models import Article
+
 
     @admin.register(Article)
     class ArticleAdmin(TranslationAdmin):
@@ -255,7 +271,7 @@ Buning uchun article_detail.html fayliga qo’shimcha kiritamiz.
     msgid "Template Text"
     msgstr "Shablon matni"
 
-### 28. O'zgartirishlarni saqlagandan so’ng quyidagi kommandani terminalga kiritamiz va run qilamiz
+### 28. O'zgartirishlarni saqlagandan so’ng quyidagi buyruqni terminalga kiritamiz va run qilamiz
     python manage.py compilemessages
 
 ### 29.Endi esa rus tiliga o’girish uchun 
@@ -272,7 +288,7 @@ Buning uchun article_detail.html fayliga qo’shimcha kiritamiz.
     msgid "Template Text"
     msgstr "Текст в шаблон"
 
-O'zgartirishlarni saqlagandan so’ng quyidagi kommandani terminalga kiritamiz va run qilamiz
+O'zgartirishlarni saqlagandan so’ng quyidagi buyruqni terminalga kiritamiz va run qilamiz
 
     python manage.py compilemessages
 
@@ -282,6 +298,8 @@ buning uchun, models.py fayliga qo’shimcha kiritamiz
     from django.db import models
     from django.urls import reverse
     from django.utils.translation import gettext_lazy as _
+
+
     class Article(models.Model):
         title=models.CharField(verbose_name=_('title'),max_length=255)
         slug=models.SlugField(verbose_name=_('slug'),unique=True)
@@ -293,7 +311,7 @@ buning uchun, models.py fayliga qo’shimcha kiritamiz
         def get_absolute_url(self):
             return reverse('news:article_detail',kwargs={'slug':self.slug})
 
-### 31. Endi esa yana quyidagi kommandani terminalda beramiz
+### 31. Endi esa yana quyidagi buyruqni terminalda beramiz
     #terminalda da quyidagi command ni beramiz
     py manage.py makemessages -l uz
 shundan so'ng django.py fayliga kirib o'zgaritirish qilamiz
@@ -309,7 +327,7 @@ shundan so'ng django.py fayliga kirib o'zgaritirish qilamiz
     #: .\news\models.py:7
     msgid "text"
     msgstr "Matn"
-O'zgarishlarni saqlagandan so'ng,terminalda quyidagi kommandani beramiz:
+O'zgarishlarni saqlagandan so'ng,terminalda quyidagi buyruqni beramiz:
 
     python manage.py compilemessages
 
@@ -325,6 +343,7 @@ Buning uchun loyihamiz ichida static nomli papka yaratamiz va uning ichiga __app
     from django.urls import path,include
     from django.views.i18n import JavaScriptCatalog
 
+
     urlpatterns = [
         path('admin/', admin.site.urls),
     ]+i18n_patterns(
@@ -337,7 +356,7 @@ shundan so'ng,article_detail.html fayliga quyidai kodni qo'shib qo'yamiz
 
     <script src="{% url 'javascript-catalog' %}"></script>
 
-### 34. Endi js faylidagi ma'lumotni tilini o'zgartirish uchun terminalga quyidagi kommandani beramiz
+### 34. Endi js faylidagi ma'lumotni tilini o'zgartirish uchun terminalga quyidagi buyruqni beramiz
     py manage.py makemessages -l uz -d djangojs
 shundan so'ng djangojs.po fayli yaratiladi va uning ichida o'zgartirishlarni amalga oshirgandan so'ng qayta compilatsiya qilamiz
 
