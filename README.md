@@ -1,4 +1,4 @@
-### Django frameworkida Saytni ko’p tilli qilish bo’yicha qo’llanma
+### Django frameworkida web-saytni ko’p tilli qilish bo’yicha qo’llanma
 ___
 #### 1.Yangi loyiha yaratamiz  
     django-admin startproject blog
