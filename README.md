@@ -187,7 +187,7 @@ INSTALLED_APPS = [
         path('',include('news.urls',namespace='news'))
         prefix_default_language=False
 
-![This is an image](https://github.com/islomiy1101/build-multi-language-website/blob/master/static/pro.jpg?raw=true)
+![This is an image](https://github.com/islomiy1101/build-multi-language-website/blob/master/static/dron.jpg?raw=true)
 
 ### 20. Loyihamizda foydalanish uchun django modeltranslation packagini o'rnatib olamiz
 buning uchun terminalda quyidagi buyruqni beramiz:
