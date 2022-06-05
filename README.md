@@ -2,9 +2,9 @@
 ___
 ### 1.Yangi loyiha yaratamiz  
     django-admin startproject blog
-#### 2. Loyihani ichida yangi app yaratamiz 
+### 2. Loyihani ichida yangi app yaratamiz 
     python manage.py startapp news
-#### 3. Appni loyihaga qo’shamiz
+### 3. Appni loyihaga qo’shamiz
 ```
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -17,10 +17,10 @@ INSTALLED_APPS = [
     'news',
 ]
 ```
-#### 4. Loyihani ishga tushiramiz
+### 4. Loyihani ishga tushiramiz
      python manage.py runserver
 ![This is an image](https://miro.medium.com/max/854/1*n-yE8dKEeWUA7P0HvV0qeg.png)
-#### 5. Loyiha uchun Article nomli model yaratamiz.
+### 5. Loyiha uchun Article nomli model yaratamiz.
    Buning uchun _models.py_ fayliga kirib quyidagi kodni ko'chirib olamiz:
     
     from django.db import models
@@ -35,7 +35,7 @@ INSTALLED_APPS = [
 
         def get_absolute_url(self):
             return reverse('')
-#### 6. Article modelimizdagi maydonlarni bazada yaratish uchun
+### 6. Article modelimizdagi maydonlarni bazada yaratish uchun
    quyidagi kommandalarni terminalga kiritib run qilamiz:
 
     python manage.py makemigrations
@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     This password is entirely numeric.
     Bypass password validation and create user anyway? [y/N]: y
     Superuser created successfully.
-#### 7. Modelimizni admin panelga qo'shamiz
+### 7. Modelimizni admin panelga qo'shamiz
    buning uchun __admin.py__ fayliga kirib quyidagi kodni ko'chiramiz:
 
     from django.contrib import admin
@@ -61,7 +61,7 @@ INSTALLED_APPS = [
     @admin.register(Article)
     class ArticleAdmin(admin.ModelAdmin):
         prepopulated_fields = {'slug':('title',)}
-#### 8. News app ichida urls.py faylini yaratamiz.
+### 8. News app ichida urls.py faylini yaratamiz.
    va unga quyidagi kodni ko'chirib olamiz:
    
     from django.urls import path
@@ -71,7 +71,7 @@ INSTALLED_APPS = [
         path('<slug:slug>/',article_detail,name='article_detail')
     ]
 
-#### 9. _views.py_ faylida _article_detail_ nomli funksiya hosil qilamiz
+### 9. _views.py_ faylida _article_detail_ nomli funksiya hosil qilamiz
     from django.shortcuts import render
     def article_detail(request,slug):
         context={
@@ -79,10 +79,10 @@ INSTALLED_APPS = [
         }
     return render(request,'news/article_detail.html',context)
 
-#### 10. Admin Panelga kirib yaratilgan tablega ma'lumot kiritamiz
+### 10. Admin Panelga kirib yaratilgan tablega ma'lumot kiritamiz
 ![This is an image](https://github.com/islomiy1101/build-multi-language-website/blob/master/static/adminpanel.jpg?raw=true)
 
-#### 11.Loyihaning urls.py faylini quyidagicha o’zgartiramiz
+### 11.Loyihaning urls.py faylini quyidagicha o’zgartiramiz
     from django.contrib import admin
     from django.urls import path,include
 
@@ -91,19 +91,19 @@ INSTALLED_APPS = [
         path('',include('news.urls',namespace='news'))
     ]
 
-#### 12. models.py fayliga o’zgartirish kiritamiz
+### 12. models.py fayliga o’zgartirish kiritamiz
 
     def get_absolute_url(self):
         return reverse('news:article_detail',kwargs={'slug':self.slug})
 
-#### 13. Loyihada templates papkasini yaratamiz va uning ichida _news/article_detail.html_ fayl yaratamiz
+### 13. Loyihada templates papkasini yaratamiz va uning ichida _news/article_detail.html_ fayl yaratamiz
     
     <div>
         <h2>Title: {{data.title}}</h2>
         <h4>Text: {{data.text}}</h4>
     </div>
 
-#### 14. Ma'lumotlarni templatega chiqarish uchun views.py fayliga qo'shimchalar kiritamiz
+### 14. Ma'lumotlarni templatega chiqarish uchun views.py fayliga qo'shimchalar kiritamiz
     from django.shortcuts import render,get_object_or_404
     from .models import Article
     def article_detail(request,slug):
@@ -113,7 +113,7 @@ INSTALLED_APPS = [
         }
         return render(request,'news/article_detail.html',context)
 
-#### 15. settings.py fayliga quyidagi kodlarni qo’shamiz
+### 15. settings.py fayliga quyidagi kodlarni qo’shamiz
     from django.utils.translation import gettext_lazy as _
 
     LANGUAGES = [
@@ -121,7 +121,7 @@ INSTALLED_APPS = [
         ('ru', _('Russian')),
         ('en', _('English')),
     ]
-#### 16. Loyihaning urls.py fayliga o'zgartirish kiritamiz
+### 16. Loyihaning urls.py fayliga o'zgartirish kiritamiz
     from django.conf.urls.i18n import i18n_patterns
     from django.contrib import admin
     from django.urls import path,include
@@ -132,7 +132,7 @@ INSTALLED_APPS = [
         path('',include('news.urls',namespace='news'))
     )
 
-#### 17. Article_detail.html fayliga quyidagi kodlar qatorini qo'shamiz
+### 17. Article_detail.html fayliga quyidagi kodlar qatorini qo'shamiz
     
     {% load i18n %}
 
@@ -151,7 +151,7 @@ INSTALLED_APPS = [
         <input type="submit" value="Go">
     </form>
 
-#### 18. settings.py fayliga local middleware ni qo'shamiz
+### 18. settings.py fayliga local middleware ni qo'shamiz
     MIDDLEWARE = [
         'django.middleware.security.SecurityMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
@@ -159,7 +159,7 @@ INSTALLED_APPS = [
         'django.middleware.common.CommonMiddleware',
     ]
 
-#### 19. Asosiy til uchun sayt urlidan _/uz/_ ni olib tashlash ya'ni default holatga uzbek tili deb tushunishi uchun
+### 19. Asosiy til uchun sayt urlidan _/uz/_ ni olib tashlash ya'ni default holatga uzbek tili deb tushunishi uchun
    buning uchun loyihaning urls.py fayliga kirib o'zgartirish qilamiz
 
     from django.conf.urls.i18n import i18n_patterns
@@ -175,12 +175,12 @@ INSTALLED_APPS = [
 
 ![This is an image](https://github.com/islomiy1101/build-multi-language-website/blob/master/static/pro.jpg?raw=true)
 
-#### 20. Loyihamizda foydalanish uchun django modeltranslation packagini o'rnatib olamiz
+### 20. Loyihamizda foydalanish uchun django modeltranslation packagini o'rnatib olamiz
 buning uchun terminalda quyidagi kommandani beramiz:
 
     pip install django-modeltranslation
 
-#### 21. modelni settings.py fayliga qo'shamiz
+### 21. modelni settings.py fayliga qo'shamiz
     INSTALLED_APPS = [
     'modeltranslation',#eng boshiga qo’shiladi
     'django.contrib.admin',
@@ -195,7 +195,7 @@ buning uchun terminalda quyidagi kommandani beramiz:
     MODELTRANSLATION_DEFAULT_LANGUAGE = 'uz'
     MODELTRANSLATION_PREPOPULATE_LANGUAGE = 'en'
 
-#### 22. Modelimizni Translationga bog'laymiz.
+### 22. Modelimizni Translationga bog'laymiz.
  buning uchun news app ichida translation.py faylini yaratamiz va unga quyidagi kodlar ketma-ketligini kiritamiz:
 
     from modeltranslation.translator import register, TranslationOptions
@@ -214,7 +214,7 @@ admin panelga kirganimizda quyigicha ko'rinish hosil bo'lgan bo'ladi
 
 ![This is an image](https://github.com/islomiy1101/build-multi-language-website/blob/master/static/photo_2022-06-05_22-10-27.jpg?raw=true)
 
-#### 23. Endi esa Admin Panelga integratsiyalaymiz
+### 23. Endi esa Admin Panelga integratsiyalaymiz
 buning uchun admin.py fayliga quyidagicha o'zgartirish kiritamiz:
     
     from modeltranslation.admin import TranslationAdmin
@@ -225,11 +225,11 @@ buning uchun admin.py fayliga quyidagicha o'zgartirish kiritamiz:
     class ArticleAdmin(TranslationAdmin):
         prepopulated_fields = {'slug':('title',)}
 
-#### 24. Rasmdan ko'rishiz mumkin endi saytimiz 3 xil tilda ishlamoqda
+### 24. Rasmdan ko'rishiz mumkin endi saytimiz 3 xil tilda ishlamoqda
 ![This is an image](https://github.com/islomiy1101/build-multi-language-website/blob/master/static/11.jpg?raw=true)
 
 
-#### 25.Bizda mana bazadan kelayotgan ma’lumotlar o’zgarmoqda endi saytdagi menyular yoki footer qismidagi textlarni o’zgartirish ni ko'rib chiqamiz.
+### 25.Bizda mana bazadan kelayotgan ma’lumotlar o’zgarmoqda endi saytdagi menyular yoki footer qismidagi textlarni o’zgartirish ni ko'rib chiqamiz.
 Buning uchun article_detail.html fayliga qo’shimcha kiritamiz.
 
     <div>
@@ -237,7 +237,7 @@ Buning uchun article_detail.html fayliga qo’shimcha kiritamiz.
         <h2>Text: {% trans 'Template Text' %}</h2>
     </div>
 
-#### 26.settings.py fayliga quyidagi kodni yozamiz va terminala quyidagi komandani beramiz
+### 26.settings.py fayliga quyidagi kodni yozamiz va terminala quyidagi komandani beramiz
     #settings.py fayliga qo’shamiz
 
     LOCALE_PATHS = [
@@ -246,7 +246,7 @@ Buning uchun article_detail.html fayliga qo’shimcha kiritamiz.
     #terminalda da quyidagi command ni beramiz
         py manage.py makemessages -l uz
 
-#### 27. Shundan so'ng bizni loyihamizda locale papkasi yaratiladi va uni ichidagi LC_MESSAGES papkasidagi Django.po faylini ichiga kirib quyidagicha o'zgartirish kiritamiz
+### 27. Shundan so'ng bizni loyihamizda locale papkasi yaratiladi va uni ichidagi LC_MESSAGES papkasidagi Django.po faylini ichiga kirib quyidagicha o'zgartirish kiritamiz
     #: .\news\templates\news\article_detail.html:22
     msgid "Template Title"
     msgstr "Shablon Sarlavhasi"
@@ -255,10 +255,10 @@ Buning uchun article_detail.html fayliga qo’shimcha kiritamiz.
     msgid "Template Text"
     msgstr "Shablon matni"
 
-#### 28. O'zgartirishlarni saqlagandan so’ng quyidagi kommandani terminalga kiritamiz va run qilamiz
+### 28. O'zgartirishlarni saqlagandan so’ng quyidagi kommandani terminalga kiritamiz va run qilamiz
     python manage.py compilemessages
 
-#### 29.Endi esa rus tiliga o’girish uchun 
+### 29.Endi esa rus tiliga o’girish uchun 
     #terminalda da quyidagi command ni beramiz
     py manage.py makemessages -l ru
 
@@ -276,7 +276,7 @@ O'zgartirishlarni saqlagandan so’ng quyidagi kommandani terminalga kiritamiz v
 
     python manage.py compilemessages
 
-#### 30. Admin Paneldagi tablitsalarga tegishli bo'lgan maydon nomlarini tilini o’zgartirish.
+### 30. Admin Paneldagi tablitsalarga tegishli bo'lgan maydon nomlarini tilini o’zgartirish.
 buning uchun, models.py fayliga qo’shimcha kiritamiz
 
     from django.db import models
@@ -293,7 +293,7 @@ buning uchun, models.py fayliga qo’shimcha kiritamiz
         def get_absolute_url(self):
             return reverse('news:article_detail',kwargs={'slug':self.slug})
 
-#### 31. Endi esa yana quyidagi kommandani terminalda beramiz
+### 31. Endi esa yana quyidagi kommandani terminalda beramiz
     #terminalda da quyidagi command ni beramiz
     py manage.py makemessages -l uz
 shundan so'ng django.py fayliga kirib o'zgaritirish qilamiz
@@ -313,13 +313,13 @@ O'zgarishlarni saqlagandan so'ng,terminalda quyidagi kommandani beramiz:
 
     python manage.py compilemessages
 
-#### 32. JavaScript orqali templatega chiqarilgan ma'lumotlarni tilini o'zgartirishni ko'rib chiqamiz
+### 32. JavaScript orqali templatega chiqarilgan ma'lumotlarni tilini o'zgartirishni ko'rib chiqamiz
 Buning uchun loyihamiz ichida static nomli papka yaratamiz va uning ichiga __app.js__ nomi bilan javascript faylini yaratib uning ichiga quyidagi kodni yozamiz:
 
     const msg='Xush kelibsiz,Mehmon'
     document.body.innerHTML+=`<hr><h1>${msg}</h1>`
 
-#### 33. Loyihaning urls.py fayliga qoshimcha kiritamiz
+### 33. Loyihaning urls.py fayliga qoshimcha kiritamiz
     from django.conf.urls.i18n import i18n_patterns
     from django.contrib import admin
     from django.urls import path,include
@@ -337,7 +337,7 @@ shundan so'ng,article_detail.html fayliga quyidai kodni qo'shib qo'yamiz
 
     <script src="{% url 'javascript-catalog' %}"></script>
 
-#### 34. Endi js faylidagi ma'lumotni tilini o'zgartirish uchun terminalga quyidagi kommandani beramiz
+### 34. Endi js faylidagi ma'lumotni tilini o'zgartirish uchun terminalga quyidagi kommandani beramiz
     py manage.py makemessages -l uz -d djangojs
 shundan so'ng djangojs.po fayli yaratiladi va uning ichida o'zgartirishlarni amalga oshirgandan so'ng qayta compilatsiya qilamiz
 
